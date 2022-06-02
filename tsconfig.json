@@ -1,0 +1,37 @@
+{
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    ".webpack/**/*",
+    ".serverless/**/*"
+  ],
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "ES2019",
+    "lib": ["ES2019", "DOM"],
+    "moduleResolution": "node",
+    "strict": true,
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src"
+    ],
+    "declaration": true,
+    "types": [
+      "node"
+    ],
+    "sourceMap": true,
+    "allowJs": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+    "noImplicitReturns": true,
+    "preserveConstEnums": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": "./",
+    "rootDir": "./",
+    "outDir": ".build"
+  }
+}

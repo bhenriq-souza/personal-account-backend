@@ -1,0 +1,20 @@
+resources:
+  Resources:
+    BanksTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.tables.banks}
+        AttributeDefinitions:
+        - AttributeName: code
+          AttributeType: S
+        - AttributeName: name
+          AttributeType: S
+        KeySchema:
+        - AttributeName: code
+          KeyType: HASH
+        - AttributeName: name
+          KeyType: RANGE
+        ProvisionedThroughput:
+          ReadCapacityUnits: 2
+          WriteCapacityUnits: 2
+

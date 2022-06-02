@@ -1,0 +1,37 @@
+service: personal-account-backend
+useDotenv: true
+
+plugins:
+  - serverless-webpack
+  - serverless-offline-dotenv
+  - serverless-offline
+  - serverless-openapi-documentation-v2
+
+package:
+  individually: false
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  architecture: arm64
+  stage: ${opt:stage, 'dev'}
+  region: ${env:SLS_REGION}
+  timeout: 30
+  memorySize: 128
+  profile: bruno.administrator
+  environment: ${file(./serverless.environment.yml):environment}
+  iam:
+    role:
+      statements: ${file(./serverless.iam.yml):iamRoleStatements}
+      managedPolicies:
+        - arn:aws:iam::aws:policy/CloudWatchLambdaInsightsExecutionRolePolicy
+      tags:
+        cloudformation:logical-id: IamRoleLambdaExecution
+        cloudformation:stack-id: !Ref AWS::StackId
+        cloudformation:stack-name: !Ref AWS::StackName
+
+custom: ${file(./serverless.custom.yml):custom}
+functions: ${file(./serverless.functions.yml):functions}
+resources: ${file(./serverless.resources.yml):resources}
+
+configValidationMode: off

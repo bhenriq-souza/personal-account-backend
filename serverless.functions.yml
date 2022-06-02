@@ -1,0 +1,10 @@
+functions:
+  createBill:
+    description: ""
+    handler: src/bills/bills.create
+    events:
+      - http:
+          path: bills
+          method: POST
+          reqValidatorName: reqValidator
+          documentation: ${file(serverless.doc.yml):endpoints.createBill}

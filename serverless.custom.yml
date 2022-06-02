@@ -1,0 +1,11 @@
+custom:
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+  dotenv:
+    include: []
+  documentation: ${file(./serverless.doc.yml):documentation}
+  service:
+    name: personal-account
+  tables:
+    banks: ${self:custom.service.name}-banks-table-${self:provider.stage}

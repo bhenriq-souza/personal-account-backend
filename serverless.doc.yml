@@ -1,0 +1,23 @@
+endpoints:
+  createBill:
+    summary: Create Bill
+    requestBody:
+      description: "A user information object"
+    requestModels:
+      application/json: "CreateBillRequest"
+    methodResponses:
+      - statusCode: 201
+        responseModels:
+          application/json: CreateBillResponse
+
+documentation:
+  title: "Personal Account Backend"
+  version: "1.2"
+  models:
+    - name: "CreateBillRequest"
+      contentType: application/json
+      schema: ${file(schema/bills/CreateBillRequest.json)}
+    
+    - name: "CreateBillResponse"
+      contentType: application/json
+      schema: ${file(schema/bills/CreateBillResponse.json)}

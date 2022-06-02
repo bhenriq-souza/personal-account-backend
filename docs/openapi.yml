@@ -1,0 +1,46 @@
+openapi: 3.0.0
+components:
+  schemas:
+    CreateBillRequest:
+      title: Create Bill Request
+      type: object
+      properties:
+        name:
+          type: string
+      additionalProperties: false
+      required:
+        - name
+    CreateBillResponse:
+      title: Create Bill Response
+      type: object
+      properties:
+        message:
+          type: string
+      additionalProperties: false
+      required:
+        - message
+  securitySchemes: {}
+info:
+  title: Personal Account Backend
+  description: ''
+  version: '1.2'
+servers: []
+paths:
+  /bills:
+    post:
+      operationId: createBill
+      summary: Create Bill
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBillRequest'
+        description: A user information object
+      parameters: []
+      responses:
+        '201':
+          description: Status 201 Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateBillResponse'
