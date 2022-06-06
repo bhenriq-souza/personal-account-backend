@@ -13,6 +13,7 @@
     "aws-sdk-mock": "^5.7.0",
     "copy-webpack-plugin": "6.2.1",
     "cross-env": "^7.0.3",
+    "csv-parse": "^5.1.0",
     "dotenv": "^9.0.2",
     "eslint": "^7.26.0",
     "eslint-config-standard-with-typescript": "^20.0.0",
@@ -25,6 +26,8 @@
     "jest-html-reporter": "^3.4.0",
     "jest-junit": "^12.0.0",
     "json-schema-to-typescript": "^10.1.5",
+    "minimalist": "^1.0.0",
+    "minimist": "^1.2.6",
     "serverless": "3.10.0",
     "serverless-offline": "^8.8.0",
     "serverless-offline-dotenv": "^0.4.0",
@@ -38,14 +41,15 @@
     "webpack-node-externals": "^3.0.0"
   },
   "scripts": {
+    "check": "npm run-script check:compile && npm run-script lint",
+    "check:compile": "tsc --project tsconfig.test.json --noEmit",
     "debug": "set SLS_DEBUG=* && node --inspect ./node_modules/.bin/serverless offline",
     "lint": "eslint --format ./eslintFormatter.js .",
-    "lint::fix": "npm run-script lint -- --fix",
-    "check::compile": "tsc --project tsconfig.test.json --noEmit",
-    "check": "npm run-script check::compile && npm run-script lint",
-    "write::docs": "./node_modules/.bin/serverless openapi generate -o ./docs/openapi.yml",
-    "write::models": "node local/writeModels",
-    "write::backend": "npm run write::docs && npm run write::models"
+    "lint:fix": "npm run-script lint -- --fix",
+    "migration:banks": "npx node data/migration.js --migration=banks --stage=$npm_config_stage",
+    "write:docs": "./node_modules/.bin/serverless openapi generate -o ./docs/openapi.yml",
+    "write:models": "node local/writeModels",
+    "write:backend": "npm run write:docs && npm run write:models"
   },
   "repository": {
     "type": "git",
