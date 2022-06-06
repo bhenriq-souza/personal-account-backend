@@ -17,4 +17,28 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: 2
           WriteCapacityUnits: 2
-
+    BankAccountsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.tables.banks}
+        AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+        - AttributeName: bankNumber
+          AttributeType: S
+        - AttributeName: agencyCode
+          AttributeType: S
+        - AttributeName: accountNumber
+          AttributeType: S
+        - AttributeName: accountCheckDigit
+          AttributeType: S
+        - AttributeName: type
+          AttributeType: S
+        KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+        - AttributeName: bankNumber
+          KeyType: RANGE
+        ProvisionedThroughput:
+          ReadCapacityUnits: 2
+          WriteCapacityUnits: 2

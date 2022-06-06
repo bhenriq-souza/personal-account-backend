@@ -9,3 +9,4 @@ custom:
     name: personal-account
   tables:
     banks: ${self:custom.service.name}-banks-table-${self:provider.stage}
+    bank-accounts: ${self:custom.service.name}-bank-accounts-table-${self:provider.stage}

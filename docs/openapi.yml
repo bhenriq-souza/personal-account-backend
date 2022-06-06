@@ -1,24 +1,57 @@
 openapi: 3.0.0
 components:
   schemas:
-    CreateBillRequest:
-      title: Create Bill Request
+    CreateBankAccountRequest:
+      title: Create Bank Account Request
       type: object
       properties:
-        name:
+        bankNumber:
           type: string
+          minLength: 3
+          maxLength: 3
+        agencyCode:
+          type: string
+        accountNumber:
+          type: string
+        accountCheckDigit:
+          type: string
+          minLength: 1
+          maxLength: 2
+        type:
+          type: string
+          enum:
+            - checking
+            - savings
       additionalProperties: false
       required:
-        - name
-    CreateBillResponse:
-      title: Create Bill Response
+        - bankNumber
+        - agencyCode
+        - accountNumber
+        - accountCheckDigit
+        - type
+    CreateBankAccountOkResponse:
+      title: Create Bank Account Ok Response
       type: object
       properties:
+        status:
+          type: string
+          enum:
+            - OK
         message:
           type: string
-      additionalProperties: false
+        result:
+          allOf:
+            - type: object
+              properties:
+                id:
+                  type: string
+              required:
+                - id
       required:
         - message
+        - result
+        - status
+      additionalProperties: false
   securitySchemes: {}
 info:
   title: Personal Account Backend
@@ -26,16 +59,16 @@ info:
   version: '1.2'
 servers: []
 paths:
-  /bills:
+  /bank-account:
     post:
-      operationId: createBill
-      summary: Create Bill
+      operationId: createBankAccount
+      summary: Create Bank Account
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateBillRequest'
-        description: A user information object
+              $ref: '#/components/schemas/CreateBankAccountRequest'
+        description: Create a bank account for a given existing bank
       parameters: []
       responses:
         '201':
@@ -43,4 +76,4 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CreateBillResponse'
+                $ref: '#/components/schemas/CreateBankAccountOkResponse'

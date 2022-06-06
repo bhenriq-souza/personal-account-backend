@@ -1,10 +1,10 @@
 functions:
-  createBill:
+  createBankAccount:
     description: ""
-    handler: src/bills/bills.create
+    handler: src/bankAccount/bankAccount.create
     events:
       - http:
-          path: bills
+          path: bank-account
           method: POST
           reqValidatorName: reqValidator
-          documentation: ${file(serverless.doc.yml):endpoints.createBill}
+          documentation: ${file(serverless.doc.yml):endpoints.createBankAccount}

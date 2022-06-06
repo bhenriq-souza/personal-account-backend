@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Create Bank Account Ok Response",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "OK"
+      ]
+    },
+    "message": {
+      "type": "string"
+    },
+    "result": {
+      "allOf":[
+        { "$ref": "#/definitions/CreateBankAccountOkResult" }
+      ]
+    }
+  },
+  "definitions": {
+    "CreateBankAccountOkResult": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    }
+  },
+  "required": [
+    "message",
+    "result",
+    "status"
+  ],
+  "additionalProperties": false
+}

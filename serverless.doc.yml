@@ -1,23 +1,22 @@
 endpoints:
-  createBill:
-    summary: Create Bill
+  createBankAccount:
+    summary: Create Bank Account
     requestBody:
-      description: "A user information object"
+      description: "Create a bank account for a given existing bank"
     requestModels:
-      application/json: "CreateBillRequest"
+      application/json: "CreateBankAccountRequest"
     methodResponses:
       - statusCode: 201
         responseModels:
-          application/json: CreateBillResponse
+          application/json: CreateBankAccountOkResponse
 
 documentation:
   title: "Personal Account Backend"
   version: "1.2"
   models:
-    - name: "CreateBillRequest"
+    - name: "CreateBankAccountRequest"
       contentType: application/json
-      schema: ${file(schema/bills/CreateBillRequest.json)}
-    
-    - name: "CreateBillResponse"
+      schema: ${file(schema/bankAccount/CreateBankAccountRequest.json)}
+    - name: "CreateBankAccountOkResponse"
       contentType: application/json
-      schema: ${file(schema/bills/CreateBillResponse.json)}
+      schema: ${file(schema/bankAccount/CreateBankAccountOkResponse.json)}
