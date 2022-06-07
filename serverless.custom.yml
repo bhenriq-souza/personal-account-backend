@@ -3,7 +3,7 @@ custom:
     webpackConfig: ./webpack.config.js
     includeModules: true
   dotenv:
-    include: []
+    path: .env.${self:provider.stage}
   documentation: ${file(./serverless.doc.yml):documentation}
   service:
     name: personal-account

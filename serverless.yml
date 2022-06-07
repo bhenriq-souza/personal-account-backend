@@ -14,21 +14,12 @@ provider:
   name: aws
   runtime: nodejs14.x
   architecture: arm64
-  stage: ${opt:stage, 'dev'}
-  region: ${env:SLS_REGION}
+  stage: ${opt:stage, 'local'}
+  region: ${env:SLS_REGION, 'us-east-1'}
   timeout: 30
   memorySize: 128
   profile: bruno.administrator
   environment: ${file(./serverless.environment.yml):environment}
-  iam:
-    role:
-      statements: ${file(./serverless.iam.yml):iamRoleStatements}
-      managedPolicies:
-        - arn:aws:iam::aws:policy/CloudWatchLambdaInsightsExecutionRolePolicy
-      tags:
-        cloudformation:logical-id: IamRoleLambdaExecution
-        cloudformation:stack-id: !Ref AWS::StackId
-        cloudformation:stack-name: !Ref AWS::StackName
 
 custom: ${file(./serverless.custom.yml):custom}
 functions: ${file(./serverless.functions.yml):functions}

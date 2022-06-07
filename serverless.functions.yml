@@ -2,6 +2,7 @@ functions:
   createBankAccount:
     description: ""
     handler: src/bankAccount/bankAccount.create
+    role: !Ref BankAccountLambdaRole
     events:
       - http:
           path: bank-account

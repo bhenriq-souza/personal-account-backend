@@ -21,10 +21,13 @@ export interface CreateBankAccountOkResult {
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export interface CreateBankAccountRequest {
-  bankNumber: string;
-  agencyCode: string;
-  accountNumber: string;
-  accountCheckDigit: string;
-  type: "checking" | "savings";
+export type CreateBankAccountRequest = CreateBankAccountRequestData;
+
+export interface CreateBankAccountRequestData {
+  bankNumber?: string;
+  agencyCode?: string;
+  accountNumber?: string;
+  accountCheckDigit?: string;
+  type?: "checking" | "savings";
+  [k: string]: unknown;
 }

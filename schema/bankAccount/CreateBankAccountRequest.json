@@ -2,29 +2,35 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Create Bank Account Request",
   "type": "object",
-  "properties": {
-    "bankNumber": {
-      "type": "string",
-      "minLength": 3,
-      "maxLength": 3
-    },
-    "agencyCode": {
-      "type": "string"
-    },
-    "accountNumber": {
-      "type": "string"
-    },
-    "accountCheckDigit": {
-      "type": "string",
-      "minLength": 1,
-      "maxLength": 2
-    },
-    "type": {
-      "type": "string",
-      "enum": [
-        "checking",
-        "savings"
-      ]
+  "allOf": [{ "$ref": "#/definitions/CreateBankAccountRequestData" }],
+  "definitions": {
+    "CreateBankAccountRequestData": {
+      "type": "object",
+      "properties": {
+        "bankNumber": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 3
+        },
+        "agencyCode": {
+          "type": "string"
+        },
+        "accountNumber": {
+          "type": "string"
+        },
+        "accountCheckDigit": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "checking",
+            "savings"
+          ]
+        }
+      }
     }
   },
   "additionalProperties": false,

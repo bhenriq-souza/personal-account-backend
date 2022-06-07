@@ -2,7 +2,7 @@ node_modules/
 dist/
 reports/
 .build/
-.env
+.env.local
 
 # Serverless directories
 .serverless

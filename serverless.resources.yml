@@ -1,5 +1,24 @@
 resources:
   Resources:
+    # IAM
+    BankAccountLambdaRole:
+      Type: AWS::IAM::Role
+      Properties:
+        RoleName: BankAccountLambdaRole
+        AssumeRolePolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            Action:
+              - dynamodb:DescribeTable
+              - dynamodb:Query
+              - dynamodb:GetItem
+              - dynamodb:PutItem
+              - dynamodb:UpdateItem
+              - dynamodb:DeleteItem
+            Resource:
+              - !Sub arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${self:custom.tables.banks}*
+              - !Sub arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${self:custom.tables.bank-accounts}*
+    # DynamoDB
     BanksTable:
       Type: AWS::DynamoDB::Table
       Properties:
@@ -20,19 +39,11 @@ resources:
     BankAccountsTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: ${self:custom.tables.banks}
+        TableName: ${self:custom.tables.bank-accounts}
         AttributeDefinitions:
         - AttributeName: id
           AttributeType: S
         - AttributeName: bankNumber
-          AttributeType: S
-        - AttributeName: agencyCode
-          AttributeType: S
-        - AttributeName: accountNumber
-          AttributeType: S
-        - AttributeName: accountCheckDigit
-          AttributeType: S
-        - AttributeName: type
           AttributeType: S
         KeySchema:
         - AttributeName: id

@@ -7,6 +7,7 @@
     "@types/aws-lambda": "^8.10.76",
     "@types/jest": "^27.4.0",
     "@types/node": "^12.12.6",
+    "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^4.23.0",
     "@typescript-eslint/parser": "^4.23.0",
     "aws-sdk": "^2.906.0",
@@ -44,6 +45,7 @@
     "check": "npm run-script check:compile && npm run-script lint",
     "check:compile": "tsc --project tsconfig.test.json --noEmit",
     "debug": "set SLS_DEBUG=* && node --inspect ./node_modules/.bin/serverless offline",
+    "deploy:dev": "NODE_ENV=develop && npx sls deploy --stage dev",
     "lint": "eslint --format ./eslintFormatter.js .",
     "lint:fix": "npm run-script lint -- --fix",
     "migration:banks": "npx node data/migration.js --migration=banks --stage=$npm_config_stage",
@@ -63,7 +65,9 @@
   },
   "homepage": "https://github.com/bhenriq-souza/personal-account-backend#readme",
   "dependencies": {
-    "aws-lambda": "^1.0.7"
+    "aws-lambda": "^1.0.7",
+    "lodash": "^4.17.21",
+    "uuid": "^8.3.2"
   },
   "engines": {
     "node": "14.*",
